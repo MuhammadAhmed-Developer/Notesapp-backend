@@ -38,7 +38,6 @@ export async function POST(req) {
       },
     });
 
-    // const randomId = Math.random().splice(2)
     const token = jwt.sign({ email:email, iat:1 }, "asdfghjkl" );
     console.log(token,'token creadted');
 
