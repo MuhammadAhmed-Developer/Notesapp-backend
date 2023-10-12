@@ -1,7 +1,7 @@
 import { db } from "@/lib/db";
 import { hash } from "bcrypt";
 import { NextResponse } from "next/server";
-var jwt = require('jsonwebtoken');
+// var jwt = require('jsonwebtoken');
 export async function POST(req) {
   try {
     const body = await req.json();
@@ -38,13 +38,13 @@ export async function POST(req) {
       },
     });
 
-    const token = jwt.sign({ email:email, iat:1 }, "asdfghjkl" );
-    console.log(token,'token creadted');
+    // const token = jwt.sign({ email:email, iat:1 }, "asdfghjkl" );
+    // console.log(token,'token creadted');
 
     const { password: newUserPassword, ...rest } = newUser;
 
     return NextResponse.json(
-      { user: rest, message: "User Registered",  token:token },
+      { user: rest, message: "User Registered",   },
       { status: 201 }
       
     );
