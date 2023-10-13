@@ -14,14 +14,12 @@ export async function POST(req) {
       },
     });
 
-    // console.log('New Item:', newItem);
 
     const serializedItem = {
         ...newItem,
         iid: newItem.iid.toString(), // Convert to string
       };
 
-    // Send the created item in the JSON response
     return NextResponse.json({ message: 'Item added', item: serializedItem }, { status: 201 });
   } catch (error) {
     console.error(error);
