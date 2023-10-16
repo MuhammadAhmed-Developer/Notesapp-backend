@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    const {items} = await db.itemsListGoals.findMany();
+    const items = await db.itemsListGoals.findMany();
 console.log(items);
 
     const itemsWithStrings = items.map(item => ({
@@ -12,7 +12,7 @@ console.log(items);
     }));
     
 
-    return NextResponse.json({message:"fetch item" }, { status: 200 });
+    return NextResponse.json({ items: itemsWithStrings }, { status: 200 });
   } catch (error) {
     console.error(error);
     return NextResponse.json({ message: 'Error retrieving items' }, { status: 500 });
