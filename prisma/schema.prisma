@@ -15,7 +15,7 @@ model User {
   id      Int      @id @default(autoincrement())
   email   String   @unique
   name    String
-  password String @unique
+  password String 
   verifyKey String? @unique
   createdAt DateTime @default(now())
   updateAt DateTime @updatedAt
@@ -30,13 +30,25 @@ model ItemsList {
   updatedAt DateTime @updatedAt
 }
 
-model ItemsListGoals {
-  id       Int      @id @default(autoincrement())
-  iid      BigInt   @unique
+
+model MainGoal {
+  id       Int       @id @default(autoincrement())
   label    String
-  checked  Boolean
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  checked  Boolean   @default(false) // Checkbox for the main goal
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+  subGoals SubGoal[]  // This field establishes a one-to-many relationship
 }
+
+model SubGoal {
+  id        Int       @id @default(autoincrement())
+  label     String
+  checked   Boolean   @default(false) // Checkbox for the sub-goal
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+  mainGoal  MainGoal  @relation(fields: [mainGoalId], references: [id])
+  mainGoalId Int      // This field links a sub-goal to its main goal
+}
+
 
 

@@ -21,8 +21,6 @@ export async function POST(req) {
     //    console.log(error);
     // }
 
-       
-
         // Check if email already exits
         const existingUserByEmail = await db.user.findUnique({
             where: { email: email }
@@ -36,6 +34,8 @@ export async function POST(req) {
        if(!isMatch){
             return NextResponse.json({message:"Password can't match"}, {status: 409})
        }
+
+       
 
        
        const token = jwt.sign({ email:email, iat:1 }, "asdfghjkl" , {expiresIn: "30d"});
