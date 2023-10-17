@@ -5,8 +5,10 @@
   // Create a new subtask for a main task
   export async function POST(req) {
     try {
-      const {  label, checked, id } = await req.json();
 
+      const body = await req.json()
+      const {  label, checked, id } = body
+         console.log(label, checked, id);
       const val = Object.keys(id);
       const idofmain =  val.pop()
 
