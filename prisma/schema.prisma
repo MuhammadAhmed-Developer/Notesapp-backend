@@ -34,20 +34,20 @@ model ItemsList {
 model MainTask {
   id       Int       @id @default(autoincrement())
   label    String
-  checked  Boolean   @default(false) // Checkbox for the main goal
+  checked  Boolean   @default(false) 
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
-  subGoals SubGoal[]  // This field establishes a one-to-many relationship
+  subGoals SubGoal[] 
 }
 
 model SubGoal {
   id        Int       @id @default(autoincrement())
   label     String    
-  checked   Boolean   @default(false) // Checkbox for the sub-goal
+  checked   Boolean   @default(false) 
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
-  mainGoal  MainTask  @relation(fields: [mainTask], references: [id])
-  mainTask Int      // This field links a sub-goal to its main goal
+  mainGoal  MainTask  @relation(fields: [mainTaskid], references: [id])
+  mainTaskid Int 
 }
 
 
