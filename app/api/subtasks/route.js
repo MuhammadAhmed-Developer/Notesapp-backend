@@ -31,13 +31,13 @@ export async function POST(req) {
 
 
   // Get all subtasks for a main task
-  // export async function GET(req) {
-  //   try {
-  //     const subtasks = await db.subtask.findMany();
-  //     console.log('AAAAAAA',subtasks);
-  //     return NextResponse.json(subtasks, { status: 200 });
-  //   } catch (error) {
-  //     console.error(error);
-  //     return NextResponse.json({ message: 'Error fetching subtasks' }, { status: 500 });
-  //   }
-  // }
+  export async function GET(req) {
+    try {
+      const subtasks = await db.subtask.findMany();
+      console.log('AAAAAAA',subtasks);
+      return NextResponse.json(subtasks, { status: 200 });
+    } catch (error) {
+      console.error(error);
+      return NextResponse.json({ message: 'Error fetching subtasks' }, { status: 500 });
+    }
+  }
