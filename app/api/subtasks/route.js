@@ -88,7 +88,6 @@ export async function PUT(req) {
 export async function DELETE(req) {
   try {
     const { id } = await req.json(); 
-
     await db.subGoal.delete({
       where: { id: Number(id) },
     });

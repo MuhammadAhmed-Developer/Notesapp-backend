@@ -43,12 +43,16 @@ export async function PUT(req) {
     const body = await req.json();
     const { id, checked } = body;
 
+    const updatedsubTask = await db.subGoal.update({
+      where: { mainTaskid:id },
+      data: { checked:checked },
+    });
     const updatedMainTask = await db.mainTask.update({
-      where: { id },
-      data: { checked },
+      where: { id:id },
+      data: { checked:checked },
     });
 
-    return NextResponse.json({ message: 'Main task checked status updated', mainTask: updatedMainTask }, { status: 200 });
+    return NextResponse.json({ message: 'Main task checked status updated', mainTask: updatedMainTask, subTast: updatedsubTask }, { status: 200 });
   } catch (error) {
     console.error(error);
     return NextResponse.json({ message: 'Error updating main task checked status' }, { status: 500 });
