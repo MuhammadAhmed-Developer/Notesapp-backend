@@ -42,7 +42,6 @@ export async function PUT(req) {
   try {
     const body = await req.json();
     const { id, checked } = body;
-
     
     const updatedMainTask = await db.mainTask.update({
       where: { id:id },

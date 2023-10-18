@@ -1,28 +1,21 @@
 import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
 
-export async function GET(req) {
+export async function GET() {
   try {
-    const checkedItems = await db.itemsListGoals.findMany({
+    const checkedMain = await db.mainTask.findMany({
+      where: {
+        checked: true,
+      },
+    });
+    const checkedsub = await db.mainTask.findMany({
       where: {
         checked: true,
       },
     });
 
-    // Convert all BigInt properties to strings
-    const checkedItemsStringified = checkedItems.map(item => {
-      const stringifiedItem = { ...item };
-      for (const key in stringifiedItem) {
-        if (typeof stringifiedItem[key] === 'bigint') {
-          stringifiedItem[key] = stringifiedItem[key].toString();
-        }
-      }
-      return stringifiedItem;
-    });
-
-    console.log(checkedItemsStringified);
-
-    return NextResponse.json({ checkedItems: checkedItemsStringified }, { status: 200 });
+   
+    return NextResponse.json({ checkedMain: checkedMain, checkedsub: checkedsub }, { status: 200 });
   } catch (error) {
     console.error("Error getting checked items", error);
     return NextResponse.json({ message: 'Failed to get checked items' }, { status: 500 });
