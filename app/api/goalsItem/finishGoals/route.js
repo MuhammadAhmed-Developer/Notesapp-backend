@@ -8,7 +8,7 @@ export async function GET() {
         checked: true,
       },
     });
-    const checkedsub = await db.mainTask.findMany({
+    const checkedsub = await db.subGoal.findMany({
       where: {
         checked: true,
       },
