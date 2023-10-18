@@ -87,9 +87,8 @@ export async function PUT(req) {
 // Delete a main task along with its subtasks
 export async function DELETE(req) {
   try {
-    const { id } = req.json(); // Get the ID from the request body
+    const { id } = req.json(); 
 
-    // First, delete the subtasks associated with the main task
     await db.subGoal.deleteMany({
       where: { mainTaskid: Number(id) },
     });
