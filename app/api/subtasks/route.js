@@ -87,21 +87,17 @@ export async function PUT(req) {
 // Delete a main task along with its subtasks
 export async function DELETE(req) {
   try {
-    const { id } = req.json(); 
+    const { id } = await req.json(); 
 
-    await db.subGoal.deleteMany({
-      where: { mainTaskid: Number(id) },
-    });
-
-    // Next, delete the main task
-    await db.mainTask.delete({
+    await db.subGoal.delete({
       where: { id: Number(id) },
     });
 
-    return NextResponse.json({ message: 'Main task and its subtasks deleted' }, { status: 200 });
+   
+    return NextResponse.json({ message: ' subtasks deleted' }, { status: 200 });
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ message: 'Error deleting main task and its subtasks' }, { status: 500 });
+    return NextResponse.json({ message: 'Error deleting  subtasks' }, { status: 500 });
   }
 }
 
