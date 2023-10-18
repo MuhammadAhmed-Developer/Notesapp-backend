@@ -39,7 +39,6 @@ export async function POST(req) {
       const searchParams = new URLSearchParams(url.search);
       let id = searchParams.get('id')
         id = Number(id)
-      // id = Number(id)
       
       console.log('iddddddddddddddddddddddddddddd',id);
 
@@ -88,6 +87,7 @@ export async function PUT(req) {
 export async function DELETE(req) {
   try {
     const { id } = await req.json(); 
+
     await db.subGoal.delete({
       where: { id: Number(id) },
     });

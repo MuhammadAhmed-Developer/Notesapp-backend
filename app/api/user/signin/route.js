@@ -8,18 +8,6 @@ export async function POST(req) {
         const body = await req.json()
         const { email, password } = body;    
         
-    //     const authorizationHeader = req.headers.get('authorization');
-    //       const token = authorizationHeader.replace('Bearer ', ''); 
-       
-    //      console.log("token api ===========",token);
-         
-    // // let decodedToken;
-    // try {
-    //    let  decodedToken = jwt.verify(token, 'asdfghjkl');
-    //      console.log("docoded==>", decodedToken)
-    // } catch (error) {
-    //    console.log(error);
-    // }
 
         // Check if email already exits
         const existingUserByEmail = await db.user.findUnique({

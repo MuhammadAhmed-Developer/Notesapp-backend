@@ -67,7 +67,6 @@ console.log(id, "=====");
       where: { mainTaskid: Number(id) },
     });
 
-    // Next, delete the main task
     await db.mainTask.delete({
       where: { id: Number(id) },
     });
