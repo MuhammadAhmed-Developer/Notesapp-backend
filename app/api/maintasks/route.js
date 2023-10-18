@@ -1,6 +1,8 @@
 // Import your Prisma client
 import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
+export const dynamic = "force-dynamic"
+export const revalidate = 20
 
 // Create a new main task
 export async function POST(req) {
