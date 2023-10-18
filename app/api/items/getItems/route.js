@@ -1,6 +1,8 @@
 import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic"
+export const revalidate = 20
 export async function GET(req) {
   try {
     // Retrieve all items from the database
