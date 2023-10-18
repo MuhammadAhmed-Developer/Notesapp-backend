@@ -5,7 +5,6 @@ export async function POST (req){
     try {
         const body = await req.json();
         const {password, verifyCode} = body;
-        console.log(password, verifyCode, "ajhllllll");
         const hashPassword = await hash(password, 10);
 
         const user = await db.user.update({
@@ -15,7 +14,6 @@ export async function POST (req){
             }
         })
 
-        console.log('user final==>' ,user);
     
         return NextResponse.json({message: 'Password Updated'},{status:201})
     } catch (error) {

@@ -4,7 +4,6 @@ import { NextResponse } from "next/server";
 export async function GET() {
   try {
     const items = await db.itemsListGoals.findMany();
-console.log(items);
 
     const itemsWithStrings = items.map(item => ({
       ...item,

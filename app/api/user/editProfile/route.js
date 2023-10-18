@@ -14,7 +14,6 @@ export async function POST(req) {
       },
     });
 
-    console.log("updated", user);
 
     return NextResponse.json({ message: "Profile Updated" },{ status: 201 });
   } catch (error) {

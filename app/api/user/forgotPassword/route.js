@@ -4,8 +4,6 @@ import nodemailer from "nodemailer"
 export  async function POST(req){
     const body =await req.json()
         const {email, code} = body
-        console.log("email",email); 
-        console.log("code",code); 
 
         const updatedUserWithCode =  await db.user.update({
           where: { email:email },

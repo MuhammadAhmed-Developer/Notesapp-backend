@@ -12,8 +12,7 @@ export async function GET(req) {
     const token = authorization.split(" ")[1];
     const decoded = jwt.verify(token, "asdfghjkl");
 
-    console.log("decodeddddddd", decoded);
-    console.log("tokennnnnnnnnnnn", token);
+    
   } catch (error) {
     console.error(error);
   }

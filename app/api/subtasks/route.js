@@ -40,7 +40,6 @@ export async function POST(req) {
       let id = searchParams.get('id')
         id = Number(id)
       
-      console.log('iddddddddddddddddddddddddddddd',id);
 
       const subtasks = await db.subGoal.findMany({
         where: {
@@ -48,7 +47,6 @@ export async function POST(req) {
         },
       });
   
-      console.log('Subtasks:', subtasks);
       return new Response(JSON.stringify(subtasks), {
         status: 200,
         headers: { 'Content-Type': 'application/json' },

@@ -1,14 +1,11 @@
 import { db } from "@/lib/db";
 import { hash } from "bcrypt";
 import { NextResponse } from "next/server";
-// var jwt = require('jsonwebtoken');
 export async function POST(req) {
   try {
     const body = await req.json();
     const { name, email, password } = body;
-    // console.log(body);
 
-    // Check if email already exits
     const existingUserByEmail = await db.user.findUnique({
       where: { email: email },
     });
@@ -38,8 +35,7 @@ export async function POST(req) {
       },
     });
 
-    // const token = jwt.sign({ email:email, iat:1 }, "asdfghjkl" );
-    // console.log(token,'token creadted');
+
 
     const { password: newUserPassword, ...rest } = newUser;
 

@@ -9,7 +9,6 @@ export async function POST(req) {
   try {
     const body = await req.json();
     const { label, checked } = body;
-console.log(label, checked);
     const newMainTask = await db.mainTask.create({
       data: {
         label,
@@ -62,7 +61,6 @@ export async function PUT(req) {
 export async function DELETE(req) {
   try {
     const { id } = await req.json(); 
-console.log(id, "=====");
     await db.subGoal.deleteMany({
       where: { mainTaskid: Number(id) },
     });

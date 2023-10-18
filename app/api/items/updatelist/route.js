@@ -6,7 +6,6 @@ export async function PUT(req) {
   try {
     const body = await req.json();
     const { iid, checked } = body;
-    console.log(iid, checked);
 
     const updatedItem = await db.itemsList.update({
       where: { id:iid },

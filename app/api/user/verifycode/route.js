@@ -11,7 +11,6 @@ export async function POST (req){
         }) 
 
         if(!verifyUserCode){
-            console.log("tokennnnnn=",verifyCode);
      return NextResponse.json({message:"code Not MAtced"}, {status:409})
 
         }

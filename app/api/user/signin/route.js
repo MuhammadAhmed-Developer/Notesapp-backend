@@ -27,7 +27,6 @@ export async function POST(req) {
 
        
        const token = jwt.sign({ email:email, iat:1 }, "asdfghjkl" , {expiresIn: "30d"});
-    console.log(token,'token creadted');
 
 
         return NextResponse.json({existingUserByEmail, message: "User Login" , token:token}, { status: 201 })

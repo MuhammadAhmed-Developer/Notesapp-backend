@@ -22,7 +22,6 @@ export async function GET(req) {
       return stringifiedItem;
     });
 
-    console.log(checkedItemsStringified);
 
     return NextResponse.json({ checkedItems: checkedItemsStringified }, { status: 200 });
   } catch (error) {
