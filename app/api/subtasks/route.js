@@ -1,11 +1,10 @@
 import { db } from "@/lib/db";
-import { NextResponse } from "next/server";
-
+import { NextResponse, NextRequest } from "next/server";
 export async function POST(req) {
   try {
     const body = await req.json();
     const { label, checked, id } = body;
-    const idofmain = id; // Since id is the ID of the MainTask
+    const idofmain = id; 
 
     const newSubtask = await db.subGoal.create({
       data: {
@@ -31,13 +30,33 @@ export async function POST(req) {
 
 
   // Get all subtasks for a main task
-  export async function GET(req) {
+  export async function GET(request) {
     try {
-      const subtasks = await db.subtask.findMany();
-      console.log('AAAAAAA',subtasks);
-      return NextResponse.json(subtasks, { status: 200 });
+
+      const url = new URL(request.url);
+      const searchParams = new URLSearchParams(url.search);
+      let id = searchParams.get('id')
+        id = Number(id)
+      // id = Number(id)
+      
+      console.log('iddddddddddddddddddddddddddddd',id);
+
+      const subtasks = await db.subGoal.findMany({
+        where: {
+         mainTaskid: id, 
+        },
+      });
+  
+      console.log('Subtasks:', subtasks);
+      return new Response(JSON.stringify(subtasks), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      });
     } catch (error) {
       console.error(error);
-      return NextResponse.json({ message: 'Error fetching subtasks' }, { status: 500 });
+      return new Response(
+        JSON.stringify({ message: 'Error fetching subtasks' }),
+        { status: 500, headers: { 'Content-Type': 'application/json' } }
+      );
     }
   }
