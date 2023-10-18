@@ -62,3 +62,47 @@ export async function POST(req) {
       );
     }
   }
+
+
+  // Update the checked status of a subtask
+export async function PUT(req) {
+  try {
+    const body = await req.json();
+    const { id, checked } = body;
+
+    const updatedSubtask = await db.subGoal.update({
+      where: { id },
+      data: { checked },
+    });
+
+    return NextResponse.json({ message: 'Subtask checked status updated', subtask: updatedSubtask }, { status: 200 });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({ message: 'Error updating subtask checked status' }, { status: 500 });
+  }
+}
+
+
+// Delete a subtask by ID
+// Delete a main task along with its subtasks
+export async function DELETE(req) {
+  try {
+    const { id } = req.json(); // Get the ID from the request body
+
+    // First, delete the subtasks associated with the main task
+    await db.subGoal.deleteMany({
+      where: { mainTaskid: Number(id) },
+    });
+
+    // Next, delete the main task
+    await db.mainTask.delete({
+      where: { id: Number(id) },
+    });
+
+    return NextResponse.json({ message: 'Main task and its subtasks deleted' }, { status: 200 });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({ message: 'Error deleting main task and its subtasks' }, { status: 500 });
+  }
+}
+

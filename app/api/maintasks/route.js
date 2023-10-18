@@ -36,3 +36,39 @@ export async function GET() {
   }
 }
 
+
+// Update the checked status of a main task
+export async function PUT(req) {
+  try {
+    const body = await req.json();
+    const { id, checked } = body;
+
+    const updatedMainTask = await db.mainTask.update({
+      where: { id },
+      data: { checked },
+    });
+
+    return NextResponse.json({ message: 'Main task checked status updated', mainTask: updatedMainTask }, { status: 200 });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({ message: 'Error updating main task checked status' }, { status: 500 });
+  }
+}
+
+
+
+// Delete a main task by ID
+export async function DELETE(req) {
+  try {
+    const { id } = req.query;
+
+    await db.mainTask.delete({
+      where: { id: Number(id) },
+    });
+
+    return NextResponse.json({ message: 'Main task deleted' }, { status: 200 });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({ message: 'Error deleting main task' }, { status: 500 });
+  }
+}
