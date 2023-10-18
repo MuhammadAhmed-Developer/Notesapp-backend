@@ -43,10 +43,7 @@ export async function PUT(req) {
     const body = await req.json();
     const { id, checked } = body;
 
-    const updatedsubTask = await db.subGoal.update({
-      where: { mainTaskid:id },
-      data: { checked:checked },
-    });
+    
     const updatedMainTask = await db.mainTask.update({
       where: { id:id },
       data: { checked:checked },
