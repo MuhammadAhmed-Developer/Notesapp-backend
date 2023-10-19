@@ -17,14 +17,6 @@ export async function POST(req) {
       );
     }
 
-    // Check if email already exits
-    //   const existingUserByUsername = await db.user.findUnique({
-    //     where:{username: username}
-    //  })
-
-    //  if(existingUserByUsername){
-    //     return NextResponse.json({user:null, message:"UserName Already Exits"},{status: 409})
-    //  }
 
     const hashPassword = await hash(password, 10);
     const newUser = await db.user.create({

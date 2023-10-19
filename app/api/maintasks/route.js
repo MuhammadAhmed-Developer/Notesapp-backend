@@ -1,4 +1,3 @@
-// Import your Prisma client
 import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
 export const dynamic = "force-dynamic"
@@ -16,7 +15,6 @@ export async function POST(req) {
       },
     });
 
-    // Send the created main task in the JSON response
     return NextResponse.json({ message: 'Main task added', mainTask: newMainTask }, { status: 201 });
   } catch (error) {
     console.error(error);

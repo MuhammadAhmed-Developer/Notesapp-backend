@@ -1,4 +1,3 @@
-// pages/api/items/updateItem.js
 import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
 
@@ -17,7 +16,6 @@ export async function PUT(req) {
       iid: updatedItem.iid.toString(), // Convert to string
     };
 
-    // Send the updated item in the JSON response
     return NextResponse.json({ message: 'Item updated', item: serializedItem });
   } catch (error) {
     console.error(error);

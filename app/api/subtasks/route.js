@@ -80,8 +80,7 @@ export async function PUT(req) {
 }
 
 
-// Delete a subtask by ID
-// Delete a main task along with its subtasks
+
 export async function DELETE(req) {
   try {
     const { id } = await req.json(); 

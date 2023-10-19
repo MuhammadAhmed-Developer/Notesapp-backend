@@ -11,7 +11,6 @@ export async function GET(req) {
       },
     });
 
-    // Convert all BigInt properties to strings
     const checkedItemsStringified = checkedItems.map(item => {
       const stringifiedItem = { ...item };
       for (const key in stringifiedItem) {

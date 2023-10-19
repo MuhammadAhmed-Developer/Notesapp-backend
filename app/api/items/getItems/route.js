@@ -5,16 +5,13 @@ export const dynamic = "force-dynamic"
 export const revalidate = 20
 export async function GET(req) {
   try {
-    // Retrieve all items from the database
     const items = await db.itemsList.findMany();
 
-    // Convert BigInt values to strings in the retrieved items
     const itemsWithStrings = items.map(item => ({
       ...item,
       iid: item.iid.toString(),
     }));
 
-    // Send the items with BigInt values converted to strings in the JSON response
     return NextResponse.json({ items: itemsWithStrings }, { status: 200 });
   } catch (error) {
     console.error(error);
